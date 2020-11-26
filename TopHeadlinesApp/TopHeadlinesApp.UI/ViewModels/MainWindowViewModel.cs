@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ using TopHeadlinesApp.UI.Models;
 
 namespace TopHeadlinesApp.UI.ViewModels
 {
-   public class MainWindowViewModel
+   public class MainWindowViewModel : INotifyPropertyChanged
    {
       public NewsRetriever _newsRetriever = new NewsRetriever();
       public ObservableCollection<Article> Articles { get; set; }
@@ -41,6 +42,17 @@ namespace TopHeadlinesApp.UI.ViewModels
          {
             Articles.Clear();           
             Articles = _newsRetriever.GetFakeArticles();
+            OnPropertyChanged("Articles");
+         }
+      }
+
+      public event PropertyChangedEventHandler PropertyChanged;
+
+      private void OnPropertyChanged(string property)
+      {
+         if (PropertyChanged != null)
+         {
+            PropertyChanged(this, new PropertyChangedEventArgs(property));
          }
       }
    }
