@@ -7,6 +7,52 @@
         mc:Ignorable="d"
         Title="ArticleWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Article.Author}"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Article.Title}"/>
+
+        <TextBox Grid.Row="3" Grid.Column="1"  
+                 Text="{Binding CurrentComment, Mode=TwoWay}" 
+                 TextWrapping="Wrap" Width="200"/>
+        <Button Grid.Row="4" Grid.Column="1" x:Name="addCommentButton" 
+                Content="Add comment" Click="addCommentButton_Click" Width="200"/>
+
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding Article.CommentCount, StringFormat=Total Comments : {0}, Mode=OneWay}"/>
+
+        <ListView x:Name="ArticleListView" Grid.Row="6" Grid.Column="1" ItemsSource="{Binding Article.Comments, Mode=TwoWay}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Posted By" Width="300">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding UserId}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Comment" Width="300">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Content}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
