@@ -40,5 +40,33 @@
 
         <Button x:Name="RefreshNewsButton" Grid.Row="2" Grid.Column="3" Content="Refresh News" Click="RefreshNewsButton_Click"
                 Grid.RowSpan="2"/>
+
+        <ListView x:Name="ArticleListView" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding Articles}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Title" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Title}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Author" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Author}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Published Date" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding PublishedAt}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
