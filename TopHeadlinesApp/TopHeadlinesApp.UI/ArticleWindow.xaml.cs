@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TopHeadlinesApp.UI.Models;
+using TopHeadlinesApp.UI.ViewModels;
 
 namespace TopHeadlinesApp.UI
 {
@@ -19,9 +21,17 @@ namespace TopHeadlinesApp.UI
    /// </summary>
    public partial class ArticleWindow : Window
    {
-      public ArticleWindow()
+      ArticleWindowViewModel _articleWindowViewModel;
+      public ArticleWindow(Article article, User user)
       {
          InitializeComponent();
+         _articleWindowViewModel = new ArticleWindowViewModel(article, user);
+         DataContext = _articleWindowViewModel;
+      }
+
+      private void addCommentButton_Click(object sender, RoutedEventArgs e)
+      {
+         _articleWindowViewModel.AddComment();
       }
    }
 }
