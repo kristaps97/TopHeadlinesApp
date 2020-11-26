@@ -10,7 +10,6 @@ namespace TopHeadlinesApp.UI
 {
    public class NewsRetriever
    {
-
       public ObservableCollection<Article> GetFakeArticles()
       {
          return new ObservableCollection<Article>()

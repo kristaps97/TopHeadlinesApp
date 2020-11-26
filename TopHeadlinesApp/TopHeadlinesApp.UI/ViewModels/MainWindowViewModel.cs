@@ -1,14 +1,19 @@
 ﻿using NewsAPI.Constants;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TopHeadlinesApp.UI.Models;
 
 namespace TopHeadlinesApp.UI.ViewModels
 {
    public class MainWindowViewModel
    {
+      public NewsRetriever _newsRetriever = new NewsRetriever();
+      public ObservableCollection<Article> Articles { get; set; }
+
       public string Username { get; set; }
 
       public List<string> Countries { get; set; }
@@ -25,6 +30,18 @@ namespace TopHeadlinesApp.UI.ViewModels
          // countries and categories
          Countries = Enum.GetNames(typeof(Countries)).ToList();
          Categories = Enum.GetNames(typeof(Categories)).ToList();
+
+         Articles = new ObservableCollection<Article>();
+      }
+
+      public async void RefreshArticles()
+      {
+
+         if (!string.IsNullOrEmpty(SelectedCountry) && !string.IsNullOrEmpty(SelectedCategory))
+         {
+            Articles.Clear();           
+            Articles = _newsRetriever.GetFakeArticles();
+         }
       }
    }
 }

@@ -21,15 +21,17 @@ namespace TopHeadlinesApp.UI
    /// </summary>
    public partial class MainWindow : Window
    {
+      MainWindowViewModel _mainWindowViewModel;
       public MainWindow(string username)
       {
          InitializeComponent();
-         DataContext = new MainWindowViewModel(username);
+         _mainWindowViewModel = new MainWindowViewModel(username);
+         DataContext = _mainWindowViewModel;
       }
 
       private void RefreshNewsButton_Click(object sender, RoutedEventArgs e)
       {
-
+         _mainWindowViewModel.RefreshArticles();
       }
    }
 }
