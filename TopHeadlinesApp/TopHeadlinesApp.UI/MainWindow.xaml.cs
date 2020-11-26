@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TopHeadlinesApp.UI.Models;
 using TopHeadlinesApp.UI.ViewModels;
 
 namespace TopHeadlinesApp.UI
@@ -32,6 +33,17 @@ namespace TopHeadlinesApp.UI
       private void RefreshNewsButton_Click(object sender, RoutedEventArgs e)
       {
          _mainWindowViewModel.RefreshArticles();
+      }
+
+      private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+      {
+         var item = sender as ListViewItem;
+         if (item != null && item.IsSelected)
+         {
+            var article = item.DataContext as Article;
+            ArticleWindow articleWindow = new ArticleWindow(article, _mainWindowViewModel.User);
+            articleWindow.Show();
+         }
       }
    }
 }
