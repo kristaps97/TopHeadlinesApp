@@ -11,16 +11,34 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="{Binding Username, Mode=OneWay, StringFormat=Welcome {0} !}"
-                   Grid.Row="1" Grid.Column="1"/>
+        <TextBlock Text="{Binding Username, Mode=OneWay, StringFormat=Welcome {0} !}" Grid.Row="1" Grid.Column="1" Margin="0 0 0 20"
+                   Grid.ColumnSpan="3"/>
+
+        <Label Grid.Row="2" Grid.Column="1" Content="Country : "/>
+        <ComboBox Grid.Row="3" Grid.Column="1"
+                  ItemsSource="{Binding Countries}"
+                  SelectedValue="{Binding SelectedCountry, Mode=TwoWay}"/>
+
+        <Label Grid.Row="2" Grid.Column="2" Content="Category : "/>
+        <ComboBox Grid.Row="3" Grid.Column="2"
+                  ItemsSource="{Binding Categories}"
+                  SelectedValue="{Binding SelectedCategory, Mode=TwoWay}"/>
+
+        <Button x:Name="RefreshNewsButton" Grid.Row="2" Grid.Column="3" Content="Refresh News" Click="RefreshNewsButton_Click"
+                Grid.RowSpan="2"/>
     </Grid>
 </Window>

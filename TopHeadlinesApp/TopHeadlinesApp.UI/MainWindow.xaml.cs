@@ -26,5 +26,10 @@ namespace TopHeadlinesApp.UI
          InitializeComponent();
          DataContext = new MainWindowViewModel(username);
       }
+
+      private void RefreshNewsButton_Click(object sender, RoutedEventArgs e)
+      {
+
+      }
    }
 }
