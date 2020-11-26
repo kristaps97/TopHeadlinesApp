@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TopHeadlinesApp.UI.ViewModels;
 
 namespace TopHeadlinesApp.UI
 {
@@ -23,6 +24,7 @@ namespace TopHeadlinesApp.UI
       public MainWindow(string username)
       {
          InitializeComponent();
+         DataContext = new MainWindowViewModel(username);
       }
    }
 }
