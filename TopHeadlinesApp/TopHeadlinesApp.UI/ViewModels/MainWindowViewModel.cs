@@ -42,8 +42,9 @@ namespace TopHeadlinesApp.UI.ViewModels
 
          if (!string.IsNullOrEmpty(SelectedCountry) && !string.IsNullOrEmpty(SelectedCategory))
          {
-            Articles.Clear();           
+            Articles.Clear();
             Articles = _newsRetriever.GetFakeArticles();
+            //Articles = await _newsRetriever.GetArticlesFromApi(SelectedCountry, SelectedCategory);
             OnPropertyChanged("Articles");
          }
       }
