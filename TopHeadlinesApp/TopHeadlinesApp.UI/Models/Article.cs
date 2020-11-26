@@ -14,5 +14,6 @@ namespace TopHeadlinesApp.UI.Models
       public string Author { get; set; }
       public DateTime PublishedAt { get; set; }
       public ObservableCollection<Comment> Comments { get; set; }
+      public int CommentCount { get => Comments.Count; }
    }
 }
