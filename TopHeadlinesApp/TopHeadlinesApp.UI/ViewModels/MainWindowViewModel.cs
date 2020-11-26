@@ -15,7 +15,7 @@ namespace TopHeadlinesApp.UI.ViewModels
       public NewsRetriever _newsRetriever = new NewsRetriever();
       public ObservableCollection<Article> Articles { get; set; }
 
-      public string Username { get; set; }
+      public User User { get; set; }
 
       public List<string> Countries { get; set; }
       public List<string> Categories { get; set; }
@@ -25,7 +25,9 @@ namespace TopHeadlinesApp.UI.ViewModels
 
       public MainWindowViewModel(string username)
       {
-         Username = username;
+         User = new User { 
+            Username = username
+         };
 
          // Using Enums from NewsApi nuget package to fill the list of
          // countries and categories
